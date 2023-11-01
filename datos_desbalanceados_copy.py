@@ -25,12 +25,12 @@ from collections import Counter
 
 #definimos funciona para mostrar los resultados
 def mostrar_resultados(y_test, pred_y):
-    LABELS = ["Normal", "Fraud"]
+    LABELS = ["True", "False"]
     conf_matrix = confusion_matrix(y_test, pred_y)
     plt.figure(figsize=(6, 6))
-    sns.heatmap(conf_matrix, xticklabels=LABELS, yticklabels=LABELS, annot=True, fmt="d");
+    sns.heatmap(conf_matrix, xticklabels=LABELS, yticklabels=LABELS, annot=True, fmt="d", cmap='coolwarm');
     plt.title("Confusion matrix")
-    plt.ylabel('True class')
+    plt.ylabel('Real class')
     plt.xlabel('Predicted class')
     plt.show()
     st.pyplot(plt)
@@ -75,7 +75,7 @@ def base_line (X_train, X_test, y_train, y_test , auto):
      mostrar_resultados(y_test, pred_y)
 
 ### Balanced
-#@st.cache_data(persist=True)
+@st.cache_data(persist=True)
 def model_balanced(X_train, X_test, y_train, y_test):
     clf_balanced = LogisticRegression(C=1.0,penalty='l2',solver="newton-cg",class_weight="balanced")
     clf_balanced.fit(X_train, y_train)
@@ -192,7 +192,7 @@ if distribuciones == 'spam':
     #dividimos en sets de entrenamiento y test
     X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7 , random_state=42)
 
-
+    
 
 elif distribuciones == 'adult':
     df_adult = pd.read_csv('data/adult_ready.csv')
@@ -228,11 +228,6 @@ elif distribuciones == 'creditcart_fraud':
 
 
 
-
-#
-
-
-
 with st.sidebar:
     
     st.sidebar.header("Tratamientos:")
@@ -264,14 +259,7 @@ with st.sidebar:
         pass
 
 
-# Main
 
-st.markdown(
-    """
-    <h1 style='text-align: center;'>Clases Desbalanceadas</h1>
-    """,
-    unsafe_allow_html=True
-)
 
 # Mencionar el botón
 if st.session_state['boton_Base_line']:
@@ -290,7 +278,7 @@ elif st.session_state['boton_Subsampling']:
 
 
 elif st.session_state['boton_Oversampling']:
-    model_oversampling(X_train, X_test, y_train, y_test )
+    
     oversampling = model_oversampling(X_train, X_test, y_train, y_test )
     
     st.write('Remuestreo usado ')
@@ -298,7 +286,7 @@ elif st.session_state['boton_Oversampling']:
 
 
 elif st.session_state['boton_Smote-Tomek']:
-    model_Smote_Tomek(X_train, X_test, y_train, y_test )
+    
     ST_sampling = model_Smote_Tomek(X_train, X_test, y_train, y_test )
    
     st.write('Remuestreo usado ')
@@ -312,21 +300,17 @@ elif st.session_state['boton_Esmable']:
 
 if 'accion_carga' not in st.session_state:
 
-    local_image = 'imagenes/comic.jpg'
-    #st.image(local_image, use_column_width=True)
-
-
     st.markdown(
-        """
-        <style>
-        body {
-            background-image: url('imagenes/comic.jpg');
-            background-size: cover;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+         f"""
+         <style>
+         .stApp {{
+             background: url("https://raw.githubusercontent.com/abeldata/Datos_desbalanceados/Master/imagenes/comic.jpg");
+             background-size: cover
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
     
     st.session_state['accion_carga'] = True
 
