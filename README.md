@@ -6,7 +6,7 @@ markdown
 Copy code
 # Datos Desbalanceados
 
-Este proyecto se enfoca en abordar el problema de conjuntos de datos desbalanceados mediante técnicas de remuestreo y modelado de machine learning.
+Este repositorio se enfoca en crear una pequeña App para abordar de manera interactiva el problema de conjuntos de datos desbalanceados mediante técnicas de remuestreo y modelado de machine learning , usando datasets con diferentes proporciones de desbalance.
 
 ## Requisitos
 
@@ -22,15 +22,6 @@ scikit-learn==X.X.X
 imbalanced-learn==X.X.X
 ```
  
-## Funcionalidades
-mostrar_resultados(y_test, pred_y): Función para mostrar la matriz de confusión y calcular métricas como precisión, recall y F1-score.
-base_line(X_train, X_test, y_train, y_test, auto): Modelo base utilizando regresión logística.
-model_balanced(X_train, X_test, y_train, y_test): Modelo con balanceo de clases usando regresión logística.
-model_subsampling(X_train, X_test, y_train, y_test): Modelado con submuestreo de la clase mayoritaria.
-model_oversampling(X_train, X_test, y_train, y_test): Modelado con sobremuestreo de la clase minoritaria.
-model_Smote_Tomek(X_train, X_test, y_train, y_test): Modelado con resampling utilizando SMOTE-Tomek.
-model_Ensamble_Balanceo(X_train, X_test, y_train, y_test): Ensamble de modelos con balanceo de clases.
-
 ## Estructura del Repositorio
 
 ```bash
