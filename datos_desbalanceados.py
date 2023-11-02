@@ -27,7 +27,7 @@ def mostrar_resultados(y_test, pred_y):
     LABELS = ["True", "False"]
     conf_matrix = confusion_matrix(y_test, pred_y)
     plt.figure(figsize=(6, 2))
-    sns.heatmap(conf_matrix, xticklabels=LABELS, yticklabels=LABELS, annot=True, fmt="d", cmap='coolwarm');
+    sns.heatmap(conf_matrix, xticklabels=LABELS, yticklabels=LABELS, annot=True, fmt="d", cmap='coolwarm_r');
     plt.title("Confusion matrix")
     plt.ylabel('Real class')
     plt.xlabel('Predicted class')
@@ -59,7 +59,7 @@ def mostrar_resultados(y_test, pred_y):
 
 
 ### Base_Line
-#@st.cache_data(persist=True)
+@st.cache_data(persist=True)
 def base_line (X_train, X_test, y_train, y_test , auto):
     clf_base = LogisticRegression(C=1.0,penalty='l2',solver="newton-cg")
     clf_base.fit(X_train,y_train)
@@ -71,7 +71,7 @@ def base_line (X_train, X_test, y_train, y_test , auto):
      mostrar_resultados(y_test, pred_y)
 
 ### Balanced
-#@st.cache_data(persist=True)
+@st.cache_data(persist=True)
 def model_balanced(X_train, X_test, y_train, y_test):
     clf_balanced = LogisticRegression(C=1.0,penalty='l2',solver="newton-cg",class_weight="balanced")
     clf_balanced.fit(X_train, y_train)
@@ -80,7 +80,7 @@ def model_balanced(X_train, X_test, y_train, y_test):
     
 
 ### Subsampling
-#@st.cache_data(persist=True)
+@st.cache_data(persist=True)
 def model_subsampling(X_train, X_test, y_train, y_test):
 
     
@@ -108,7 +108,7 @@ def model_subsampling(X_train, X_test, y_train, y_test):
 
 
 ### Oversampling
-#@st.cache_data(persist=True)
+@st.cache_data(persist=True)
 def model_oversampling(X_train, X_test, y_train, y_test):
 
     os =  RandomOverSampler(sampling_strategy=0.7)
@@ -131,7 +131,7 @@ def model_oversampling(X_train, X_test, y_train, y_test):
     return (df_combined)
 
 ### resampling con Smote-Tomek
-#@st.cache_data(persist=True)
+@st.cache_data(persist=True)
 def model_Smote_Tomek(X_train, X_test, y_train, y_test):
 
     os_us = SMOTETomek(sampling_strategy=0.7)
@@ -158,7 +158,7 @@ def model_Smote_Tomek(X_train, X_test, y_train, y_test):
 
 
 ### Ensamble de Modelos con Balanceo
-#@st.cache_data(persist=True)
+@st.cache_data(persist=True)
 def model_Ensamble_Balanceo(X_train, X_test, y_train, y_test):
     bbc = BalancedBaggingClassifier(base_estimator=RandomForestClassifier(), sampling_strategy='auto', replacement=False)
     bbc.fit(X_train, y_train)
