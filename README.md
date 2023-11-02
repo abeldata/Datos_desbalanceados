@@ -13,13 +13,13 @@ Este repositorio se enfoca en crear una pequeña App para abordar de manera inte
 A continuación se presentan las librerías necesarias para ejecutar este proyecto. Asegúrate de tenerlas instaladas en tu entorno.
 
 ```bash
-streamlit==X.X.X
-pandas==X.X.X
-numpy==X.X.X
-matplotlib==X.X.X
-seaborn==X.X.X
-scikit-learn==X.X.X
-imbalanced-learn==X.X.X
+pandas==2.0.2
+numpy==1.22.4
+matplotlib==3.7.1
+seaborn==0.12.2
+streamlit==1.23.1
+scikit-learn==1.2.2
+imbalanced-learn==0.11.0
 ```
  
 ## Estructura del Repositorio
