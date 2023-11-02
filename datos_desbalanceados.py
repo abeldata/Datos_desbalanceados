@@ -300,7 +300,7 @@ if 'accion_carga' not in st.session_state:
          f"""
          <style>
          .stApp {{
-             background: url("https://raw.githubusercontent.com/abeldata/Datos_desbalanceados/Master/imagenes/comic.jpg");
+             background: url("https://raw.githubusercontent.com/abeldata/Datos_desbalanceados/Master/imagenes/desbalance.jpg");
              background-size: cover
          }}
          </style>
