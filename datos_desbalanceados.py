@@ -5,8 +5,7 @@ import seaborn as sns
 import streamlit as st
 
 
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score , precision_score ,recall_score ,f1_score
+from sklearn.metrics import confusion_matrix , precision_recall_fscore_support
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
@@ -27,7 +26,7 @@ from collections import Counter
 def mostrar_resultados(y_test, pred_y):
     LABELS = ["True", "False"]
     conf_matrix = confusion_matrix(y_test, pred_y)
-    plt.figure(figsize=(6, 6))
+    plt.figure(figsize=(6, 2))
     sns.heatmap(conf_matrix, xticklabels=LABELS, yticklabels=LABELS, annot=True, fmt="d", cmap='coolwarm');
     plt.title("Confusion matrix")
     plt.ylabel('Real class')
@@ -36,25 +35,22 @@ def mostrar_resultados(y_test, pred_y):
     st.pyplot(plt)
     
 
-    # Calcular las métricas
-    acc = accuracy_score(y_test, pred_y)
-    precision = precision_score(y_test, pred_y)
-    recall = recall_score(y_test, pred_y)
-    f1 = f1_score(y_test, pred_y)
+    metricas= precision_recall_fscore_support(y_test, pred_y,labels=['0', '1'])
+
+    # Crear un DataFrame con los valores obtenidos
+    df_metricas = pd.DataFrame({
+        'Precision': metricas[0],
+        'Recall': metricas[1],
+        'F1 Score': metricas[2],
+        'Support': metricas[3]
+    }, index=['Class 0', 'Class 1'])  # Asignar nombres de clase si es aplicable
+        
+
     
-
-    # Crear un DataFrame con las métricas con dos decimales
-    data = {
-        'Metric': ['Accuracy', 'Precision', 'Recall', 'F1'],
-        'Value': [acc, precision, recall, f1]
-    }
-
-    df_metrics = pd.DataFrame(data)
-    df_metrics['Value'] = df_metrics['Value'].map(lambda x: f'{x:.2f}')  # Redondear a 2 decimales
-
     # Mostrar el DataFrame en Streamlit dentro de una caja
-    st.write('Metricas')
-    st.dataframe(df_metrics)
+    
+    st.write('Metricas') 
+    st.write(df_metricas)
 
 
 
@@ -239,7 +235,7 @@ with st.sidebar:
         
         pass
         
-    if st.sidebar.button("Balanceado",key='boton_Balanceado', help='LR: class_wieght= "balanced" '):
+    if st.sidebar.button("Balanced",key='boton_Balanceado', help='LR: class_weight= "balanced" '):
         
         pass
     
