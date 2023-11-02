@@ -1,8 +1,3 @@
-# Datos_desbalanceados
-
-## En obras
-
-
 # Datos Desbalanceados
 Este repositorio se enfoca en crear una pequeña App para abordar de manera interactiva el problema de conjuntos de datos desbalanceados mediante técnicas de remuestreo y modelado de machine learning , usando datasets con diferentes proporciones de desbalance.
 
@@ -32,7 +27,7 @@ imbalanced-learn==0.11.0
 ├── datos_desbalanceados.py # Código principal
 ├── requirements.txt      # Lista de librerías requeridas
 └── imagenes/             # Directorio de imágenes utilizadas
-    └── comic.jpg
+    └── desbalance.jpg
 ```
 ## Uso
 Elige un conjunto de datos desde el panel lateral y selecciona una de las opciones para evaluar diferentes modelos y técnicas de remuestreo.
