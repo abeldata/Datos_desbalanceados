@@ -33,4 +33,4 @@ imbalanced-learn==0.11.0
 Elige un conjunto de datos desde el panel lateral y selecciona una de las opciones para evaluar diferentes modelos y técnicas de remuestreo.
 
 ## Créditos
-Este proyecto utiliza las librerías de Python, incluyendo Streamlit, Pandas, NumPy, Matplotlib, Seaborn y Scikit-learn. Agradecimientos a la comunidad de desarrolladores de estas librerías.
+Este proyecto utiliza las librerías de Python, incluyendo Streamlit, Pandas, NumPy, Matplotlib, Seaborn y Scikit-learn.<b /> Agradecimientos a la comunidad de desarrolladores de estas librerías.
