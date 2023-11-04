@@ -1,5 +1,5 @@
 # Datos Desbalanceados
-Este repositorio se enfoca en crear una pequeña App para abordar de manera interactiva el estudio de conjuntos de datos desbalanceados , mediante técnicas de remuestreo y modelado de machine learning sobre datasets con diferentes proporciones de desbalance.
+Este repositorio se enfoca en crear una pequeña App para abordar de manera interactiva el estudio de conjuntos de datos desbalanceados , mediante técnicas de remuestreo y  ML , sobre datasets con diferentes proporciones de desbalance.
 
 ## Demo App
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://abeldata-datos-desbalanceados.streamlit.app/)
@@ -27,7 +27,7 @@ imbalanced-learn==0.11.0
 ├── datos_desbalanceados.py # Código principal
 ├── requirements.txt      # Lista de librerías requeridas
 └── imagenes/             # Directorio de imágenes utilizadas
-    └── desbalance.jpg
+     └── desbalance.jpg
 ```
 ## Uso
 Elige un conjunto de datos desde el panel lateral y selecciona una de las opciones para evaluar diferentes modelos y técnicas de remuestreo.
