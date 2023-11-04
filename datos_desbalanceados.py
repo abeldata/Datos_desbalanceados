@@ -23,7 +23,7 @@ from collections import Counter
 
 
 #definimos funciona para mostrar los resultados
-def mostrar_resultados(y_test, pred_y):
+def mostrar_resultados(y_test, pred_y , metodo) :
     LABELS = ["True", "False"]
     conf_matrix = confusion_matrix(y_test, pred_y)
     plt.figure(figsize=(6, 2))
@@ -49,7 +49,7 @@ def mostrar_resultados(y_test, pred_y):
     
     # Mostrar el DataFrame en Streamlit dentro de una caja
     
-    st.write('Metricas') 
+    st.write(f'Metricas : {metodo}') 
     st.write(df_metricas)
 
 
@@ -68,7 +68,7 @@ def base_line (X_train, X_test, y_train, y_test , auto):
      return clf_base
     else :
      pred_y = clf_base.predict(X_test)
-     mostrar_resultados(y_test, pred_y)
+     mostrar_resultados(y_test, pred_y , metodo = 'Base line')
 
 ### Balanced
 #@st.cache_data(persist=True)
@@ -76,7 +76,7 @@ def model_balanced(X_train, X_test, y_train, y_test):
     clf_balanced = LogisticRegression(C=1.0,penalty='l2',solver="newton-cg",class_weight="balanced")
     clf_balanced.fit(X_train, y_train)
     pred_y = clf_balanced.predict(X_test)
-    mostrar_resultados(y_test, pred_y)
+    mostrar_resultados(y_test, pred_y , metodo= 'Balanced')
     
 
 ### Subsampling
@@ -102,7 +102,7 @@ def model_subsampling(X_train, X_test, y_train, y_test):
     
     subsampling = base_line(X_train_res, X_test, y_train_res, y_test , auto= False)
     pred_y = subsampling.predict(X_test)
-    mostrar_resultados(y_test, pred_y)
+    mostrar_resultados(y_test, pred_y , metodo= 'Subsampling')
 
     return (df_combined)
 
@@ -126,7 +126,7 @@ def model_oversampling(X_train, X_test, y_train, y_test):
     
     oversampling = base_line(X_train_res, X_test, y_train_res, y_test, auto= False)
     pred_y = oversampling.predict(X_test)
-    mostrar_resultados(y_test, pred_y)
+    mostrar_resultados(y_test, pred_y , metodo= 'Oversampling')
 
     return (df_combined)
 
@@ -151,7 +151,7 @@ def model_Smote_Tomek(X_train, X_test, y_train, y_test):
 
     Smote_Tomek = base_line(X_train_res, X_test, y_train_res, y_test, auto= False)
     pred_y = Smote_Tomek.predict(X_test)
-    mostrar_resultados(y_test, pred_y)
+    mostrar_resultados(y_test, pred_y , metodo='Smote_Tomek')
 
 
     return (df_combined)
@@ -163,11 +163,10 @@ def model_Ensamble_Balanceo(X_train, X_test, y_train, y_test):
     bbc = BalancedBaggingClassifier(base_estimator=RandomForestClassifier(), sampling_strategy='auto', replacement=False)
     bbc.fit(X_train, y_train)
     pred_y = bbc.predict(X_test)
-    mostrar_resultados(y_test, pred_y)
+    mostrar_resultados(y_test, pred_y , metodo= 'Ensamble con Balanceo')
 
 
 
-       
 
 
 
